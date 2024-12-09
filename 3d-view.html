@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3D Model Viewer</title>
+        <!-- Include the Model-Viewer library -->
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #f0f0f0;
+            }
+            model-viewer {
+                width: 100%;
+                height: auto;
+                max-width: 800px;
+                max-height: 600px;
+            }
+        </style>
+    </head>
+<body>
+    
+    <model-viewer src="./efuel-dome.gltf" alt="A 3D model" environment-image="neutral" auto-rotate="" shadow-intensity="2"
+    shadow-softness="0.5" field-of-view="30deg" disable-zoom  camera-controls="" camera-orbit="auto"  exposure="2"  class="w-full h-full outline-none focus:outline-none" ar-status="not-presenting" style="aspect-ratio: 3 / 2;">
+    </model-viewer>
+</body>
+</html>
