@@ -1,32 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>3D Model Viewer</title>
-        <!-- Include the Model-Viewer library -->
-        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-        <style>
-            body {
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background: #f0f0f000;
-            }
-            model-viewer {
-                width: 100%;
-                height: auto;
-                max-width: 800px;
-                max-height: 600px;
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model and Static Image View</title>
+    <!-- Include the Model-Viewer library -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #eaeaea;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            margin-bottom: 20px;
+            align-items: baseline;
+        }
+        .button {
+            margin: 10px;
+            /* padding: 10px 10px; */
+            font-size: 16px;
+            color: white;
+            background: #3069a500;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #0057b300;
+        }
+        .content-container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        model-viewer, img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+        }
+    </style>
+</head>
 <body>
     
-    <model-viewer src="./efuel-dome.gltf" alt="A 3D model" environment-image="neutral" auto-rotate="" shadow-intensity="0"
-    shadow-softness="0" field-of-view="30deg" disable-zoom  camera-controls="" camera-orbit="auto"  exposure="2"  class="w-full h-full outline-none focus:outline-none" ar-status="not-presenting" style="aspect-ratio: 3 / 2;">
-    </model-viewer>
+    <!-- Content container for 3D model and static image -->
+    <div class="content-container">
+        <!-- 3D Model Viewer -->
+        <div id="model-view" class="hidden">
+            <model-viewer src="./efuel-dome.gltf" alt="A 3D model" 
+            environment-image="neutral" auto-rotate shadow-intensity="0"
+            shadow-softness="0" field-of-view="30deg" disable-zoom
+            camera-controls exposure="2" style="aspect-ratio: 3 / 2;">
+        </model-viewer>
+    </div>
+    <!-- Static Image Viewer -->
+    <div id="static-view" >
+        <img src="./efuel-static-image.png" alt="Static view of the model">
+    </div>
+</div>
+<!-- Buttons to toggle between views -->
+<div class="button-container">
+    <button class="button" onclick="showStaticView()">🔵</button>
+    <button class="button" style="width: 70px;" onclick="showModelView()"><img src="./360degree.png"></button>
+</div>
+
+    <script>
+        // Function to show the 3D Model View
+        function showModelView() {
+            document.getElementById('model-view').classList.remove('hidden');
+            document.getElementById('static-view').classList.add('hidden');
+        }
+
+        // Function to show the Static Image View
+        function showStaticView() {
+            document.getElementById('static-view').classList.remove('hidden');
+            document.getElementById('model-view').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
